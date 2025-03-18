@@ -13,6 +13,15 @@ class Dec:
             yield self.__n
             self.__n += 1
 
+    def characters_code_32_127(self, numb):
+        while self.__n < numb:
+            yield self.__n
+            self.__n += 1
+    
+    def charcters_code_128_255(self, numb):
+        while self.__n < numb:
+            yield self.__n
+            self.__n += 1
 
 
 class Oct:

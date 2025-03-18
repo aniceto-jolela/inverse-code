@@ -16,14 +16,31 @@ class Win1252:
         ASCII control characters (character code 0-31)
         The first 32 characters in the ASCII-table are unprintable control codes and are used to control peripherals such as printers.
         """
-        def __init__(self):
-            Dec.__init__(self)
-
-
         def dec_0_31(self):
-            result = [x for x in Dec().characters_code_0_31(31)]
+            result = [x for x in Dec().characters_code_0_31(32)]
             return result
+        
 
 
+    class Printable_Characters:
+        """
+        ASCII printable characters (character code 32-127)
+        Codes 32-127 are common for all the different variations of the ASCII table, they are called printable characters, represent letters, digits, punctuation marks, and a few miscellaneous symbols. You will find almost every character on your keyboard. Character 127 represents the command DEL.
+        """
+        def dec_32_127(self):
+            result = [x+32 for x in Dec().characters_code_32_127(96)]
+            return result
+        
+       
+    
 
+    class Extended_Ascii_codes:
+        """
+        There are several different variations of the 8-bit ASCII table. 
+        The table below is according to Windows-1252 (CP-1252) which is a superset of ISO 8859-1, 
+        also called ISO Latin-1, in terms of printable characters, but differs from the IANA's ISO-8859-1 by using displayable characters rather than control characters in the 128 to 159 range. Characters that differ from ISO-8859-1 is marked by light blue color.
+        """
 
+        def dec_128_255(self):
+            result = [x+128 for x in Dec().charcters_code_128_255(128)]
+            return result
