@@ -1,5 +1,6 @@
-from .asciitable import Dec
-
+from .asciitable import Dec, Oct
+import os
+import sys
 
 class Win1252:
     """
@@ -10,16 +11,21 @@ class Win1252:
     """
     def __init__(self):
         pass
-    
+
     class Control_Characters:
         """
         ASCII control characters (character code 0-31)
         The first 32 characters in the ASCII-table are unprintable control codes and are used to control peripherals such as printers.
-        """
+        """        
         def dec_0_31(self):
             result = [x for x in Dec().characters_code_0_31(32)]
             return result
         
+        
+        def oct_000_037(self):
+            result = [x for x in Oct().code(38)]
+            return result
+
 
 
     class Printable_Characters:
@@ -27,10 +33,17 @@ class Win1252:
         ASCII printable characters (character code 32-127)
         Codes 32-127 are common for all the different variations of the ASCII table, they are called printable characters, represent letters, digits, punctuation marks, and a few miscellaneous symbols. You will find almost every character on your keyboard. Character 127 represents the command DEL.
         """
-        def dec_32_127(self):
-            result = [x+32 for x in Dec().characters_code_32_127(96)]
+        def dec_to_char_32_127(self):
+            result = Dec().dec_to_char()
             return result
         
+        def dec_32_127(self):
+            result = Dec().code()
+            return result
+        
+        def oct_040_177(self):
+            result = [x+40 for x in Oct().code(140) ]
+            return result
        
     
 
@@ -42,5 +55,5 @@ class Win1252:
         """
 
         def dec_128_255(self):
-            result = [x+128 for x in Dec().charcters_code_128_255(128)]
+            result = [x+128 for x in Dec().code(128)]
             return result
