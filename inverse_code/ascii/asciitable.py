@@ -9,20 +9,50 @@ class Dec:
 
     def __init__(self):
         self.__n = 0
+        self.__symbol = (
+            " ",
+            "!",
+            '"',
+            "#",
+            "$",
+            "%",
+            "&",
+            "'",
+            "(",
+            ")",
+            "*",
+            "+",
+            ",",
+            "-",
+            ".",
+            "/",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            ":",
+            ";",
+            "<",
+            "=",
+            ">",
+            "?",
+            "@",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+        )
 
-    def characters_code_0_31(self, numb):
-        """charecters_code_31"""
-        while self.__n < numb:
-            yield self.__n
-            self.__n += 1
-
-    def characters_code_32_127(self, numb):
-        """charecters_code_31"""
-        while self.__n < numb:
-            yield self.__n
-            self.__n += 1
-
-    def charcters_code_128_255(self, numb):
+    def characters_code(self, numb):
         """charecters_code_31"""
         while self.__n < numb:
             yield self.__n
