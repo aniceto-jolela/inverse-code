@@ -3,12 +3,54 @@ ASCII Table
 Reference to ASCII Table of Windows-1252
 """
 
+import dataclasses
 
+
+@dataclasses.dataclass
 class Dec:
-    """Dec 0 to 31"""
+    """Dec 0 to 255"""
+
+    def code(self, numb, start=0):
+        """charecters_code_31"""
+        while start < numb:
+            yield start
+            start += 1
+
+
+@dataclasses.dataclass
+class Oct:
+    """Dec 0 to 378"""
 
     def __init__(self):
-        self.__n = 0
+        self.__reset = 0
+
+    def code(self, numb, start=0):
+        """@TODO:"""
+        while start < numb:
+            yield start
+            if self.__reset == 7:
+                self.__reset = self.__reset - 8
+                start += 2
+            self.__reset += 1
+            start += 1
+
+
+class Hex: ...
+
+
+class Bin: ...
+
+
+class HtmlNumber: ...
+
+
+class HtmlName: ...
+
+
+class Symbol:
+    """ "TODO"""
+
+    def __init__(self):
         self.__symbol = (
             " ",
             "!",
@@ -52,38 +94,4 @@ class Dec:
             "G",
         )
 
-    def characters_code(self, numb):
-        """charecters_code_31"""
-        while self.__n < numb:
-            yield self.__n
-            self.__n += 1
-
-
-class Oct:
-    def __init__(self):
-        self.__n = 0
-        self.__reset = 0
-
-    def code(self, numb):
-        while self.__n < numb:
-            yield self.__n
-            if self.__reset == 7:
-                self.__reset = self.__reset - 8
-                self.__n += 2
-            self.__reset += 1
-            self.__n += 1
-
-
-class Hex: ...
-
-
-class Bin: ...
-
-
-class Symbol: ...
-
-
-class HtmlNumber: ...
-
-
-class HtmlName: ...
+    def code(self): ...

@@ -1,14 +1,16 @@
 import unittest
-from .test_win1252 import TestWin1252
+from .test_dec_0_255 import TestDec0255
 
 
 def suite():
     suite_ = unittest.TestSuite()
     suite_.addTests(
         [
-            TestWin1252("test_dec_0_31"),
-            TestWin1252("test_dec_32_127"),
-            TestWin1252("test_dec_128_255"),
+            TestDec0255("test_success"),
+            TestDec0255("test_negative_number"),
+            TestDec0255("test_greater"),
+            TestDec0255("test_float"),
+            TestDec0255("test_non_number"),
         ]
     )
     return suite_

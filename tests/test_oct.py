@@ -1,11 +1,15 @@
 import unittest
-from .test_win1252 import TestWin1252
+from .test_oct_000_037 import TestDec0377
 
 
 def suite():
-    suite = unittest.TestSuite()
-    suite.addTests([TestWin1252("tet_oct_000_037"), TestWin1252("tet_oct_040_177")])
-    return suite
+    suite_ = unittest.TestSuite()
+    suite_.addTests(
+        [
+            TestDec0377("test_success"),
+        ]
+    )
+    return suite_
 
 
 if __name__ == "__main__":
