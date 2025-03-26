@@ -20,5 +20,5 @@ class Win1252:
         return result
 
     def hex_00_FF(self):
-        result = list(Hex().code(111))
+        result = list(Hex().code(197))
         return result

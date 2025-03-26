@@ -7,7 +7,7 @@ class TestHex00ff(unittest.TestCase):
 
     def test_success(self):
         """Return success"""
-        self.assertDictEqual(Win1252.hex_00_FF(self), list(Hex().code(109)))
+        self.assertDictEqual(Win1252.hex_00_FF(self), list(Hex().code(194)))
 
     def test_greater(self):
         """Return success"""
