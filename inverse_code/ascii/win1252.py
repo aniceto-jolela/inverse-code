@@ -1,4 +1,4 @@
-from .asciitable import Dec, Oct, Hex
+from .asciitable import Dec, Oct, Hex, Bin
 
 
 class Win1252:
@@ -21,4 +21,8 @@ class Win1252:
 
     def hex_00_FF(self):
         result = list(Hex().code(197))
+        return result
+
+    def bin_01(self):
+        result = list(Bin().code(256))
         return result

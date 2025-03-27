@@ -35,6 +35,7 @@ class Oct:
             start += 1
 
 
+@dataclasses.dataclass
 class Hex:
     """Hex"""
 
@@ -110,7 +111,108 @@ class Hex:
             yield self.__result
 
 
-class Bin: ...
+class Bin:
+    def __init__(self):
+        self.__start = 0
+        (
+            self.__a,
+            self.__b,
+            self.__c,
+            self.__d,
+            self.__e,
+            self.__f,
+            self.__g,
+            self.__h,
+        ) = (0, 0, 0, 0, 0, 0, 0, 0)
+        self.n0, self.n1, self.n2, self.n3, self.n4, self.n5, self.n6, self.n7 = (
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+        )
+
+    def code(self, numb):
+        """Code bin"""
+        while self.__start < numb:
+            if self.n0 < 1:  # H
+                self.__h = 0
+                self.n0 += 1
+            else:
+                self.__h = 1
+                self.n0 = 0
+
+            if self.n1 < 2:  # G
+                self.__g = 0
+            else:
+                self.__g = 1
+                if self.n1 == 3:
+                    self.n1 = self.n1 - 4
+
+            if self.n2 < 4:  # F
+                self.__f = 0
+            else:
+                self.__f = 1
+                if self.n2 == 7:
+                    self.n2 = self.n2 - 8
+
+            if self.n3 < 8:  # E
+                self.__e = 0
+            else:
+                self.__e = 1
+                if self.n3 == 15:
+                    self.n3 = self.n3 - 16
+
+            if self.n4 < 16:  # D
+                self.__d = 0
+            else:
+                self.__d = 1
+                if self.n4 == 31:
+                    self.n4 = self.n4 - 32
+
+            if self.n5 < 32:  # C
+                self.__c = 0
+            else:
+                self.__c = 1
+                if self.n5 == 63:
+                    self.n5 = self.n5 - 64
+
+            if self.n6 < 64:  # B
+                self.__b = 0
+            else:
+                self.__b = 1
+                if self.n6 == 127:
+                    self.n6 = self.n6 - 128
+
+            if self.n7 < 128:  # A
+                self.__a = 0
+            else:
+                self.__a = 1
+                if self.n7 == 255:
+                    self.n7 = self.n7 - 256
+
+            result = (
+                str(self.__a)
+                + str(self.__b)
+                + str(self.__c)
+                + str(self.__d)
+                + str(self.__e)
+                + str(self.__f)
+                + str(self.__g)
+                + str(self.__h)
+            )
+            self.n1 += 1
+            self.n2 += 1
+            self.n3 += 1
+            self.n4 += 1
+            self.n5 += 1
+            self.n6 += 1
+            self.n7 += 1
+            self.__start += 1
+            yield result
 
 
 class HtmlNumber: ...
