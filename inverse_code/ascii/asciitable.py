@@ -8,6 +8,7 @@ It seems a normal function, except that contains
 """
 
 import dataclasses
+from inverse_code.error import NonNumber
 
 
 @dataclasses.dataclass
@@ -18,9 +19,12 @@ class Dec:
         """
         `numb`: is the amounts of times that the loop will be repeated.\n
         `start`: is the initial loop variable.\n"""
-        while start < numb:
-            yield start
-            start += 1
+        try:
+            while start < numb:
+                yield start
+                start += 1
+        except TypeError as e:
+            raise NonNumber from e
 
 
 @dataclasses.dataclass
@@ -142,7 +146,12 @@ class Hex:
 
 @dataclasses.dataclass
 class Bin:
-    """Binary from 00000000 to 11111111"""
+    """
+    binary from 00000000 to 11111111
+    ### base (2)^x
+    2⁷, 2⁶, 2⁵, 2⁴, 2³, 2², 2¹, 2⁰\n
+    128, 64, 32, 16, 8, 4, 2, 1
+    """
 
     def __init__(self):
         self.__start = 0
