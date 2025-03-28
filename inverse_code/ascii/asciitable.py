@@ -1,6 +1,10 @@
 """
-ASCII Table
-Reference to ASCII Table of Windows-1252
+`ASCII Table`\n
+Reference to ASCII Table of Windows-1252\n
+All functions of this class returns a
+[generating iterator](https://docs.python.org/3/glossary.html#term-generator).\n
+It seems a normal function, except that contains
+`yield` expressions to produce a number of usable values in a loop while.
 """
 
 import dataclasses
@@ -8,10 +12,12 @@ import dataclasses
 
 @dataclasses.dataclass
 class Dec:
-    """Dec 0 to 255"""
+    """Decimal from 0 to 255"""
 
     def code(self, numb, start=0):
-        """charecters_code_31"""
+        """
+        `numb`: is the amounts of times that the loop will be repeated.\n
+        `start`: is the initial loop variable.\n"""
         while start < numb:
             yield start
             start += 1
@@ -19,13 +25,16 @@ class Dec:
 
 @dataclasses.dataclass
 class Oct:
-    """Dec 0 to 378"""
+    """Octal from 0 to 377"""
 
     def __init__(self):
         self.__reset = 0
 
     def code(self, numb, start=0):
-        """@TODO:"""
+        """
+        `numb`: is the amounts of times that the loop will be repeated.\n
+        `start`: is the initial loop variable.\n
+        `self.__reset`: It is the `octal` control variable that goes from `0 to 7`."""
         while start < numb:
             yield start
             if self.__reset == 7:
@@ -37,13 +46,12 @@ class Oct:
 
 @dataclasses.dataclass
 class Hex:
-    """Hex"""
+    """Hexadeciaml from 0 to ff"""
 
     def __init__(self):
         self.__char = ["a", "b", "c", "d", "e", "f"]
         self.__num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-        self.__index_char = 0
-        self.__index_char_static = 0
+        self.__index_char = {"dynamic": 0, "static": 0}
         self.__index_num = 0
         self.__n = 0
         self.__start = 0
@@ -52,172 +60,211 @@ class Hex:
     def code(self, numb):
         """
         @NOTE: This generator returns a list of each `hexadecimal character` to its implementation
-            is a little complex.\n
+            is a little complex. It was divided into 2 sub methods from 0 to 100 and 101 to 256.\n
         `numb`: number of times that will be repeated.\n
         `self.__start`: it is the loop accountant.\n
-        `self.__char` : it is the list of characters that will be implemented if you attach this\n
+        `self.__char[]` : it is the list of characters that will be implemented if you attach this\n
             condition (`if self.__n > 9 and self.__n <= 15`).\n
         `self.__n` : is the variable of hexadecimal control from `0 to 9` and from `a to f`
             that total `15 characters`. \n
-        `self.__reset` : is the `index` that controls the `self.__char`'s list
-            that goes from 0 to 5.\n
-        `self.__result`: returns the result of each `character in string`.
+        `self.__index_char{}` : is a dictionary that controls the `dynamic` and `static`
+            of each hexadecimal number.\n
+            that goes from [0 to 5].\n
+        `self.__index_num`: is the `index` that controls the `self.__num`'s list
+            that goes from [0 to 9].\n
+        `self.__result`: returns the result of each `character in string`.\n
 
+        ### demonstration
+
+        self.__start = 0\n
+        numb = 15
+
+        1. output of the first sequence from [0 to 100]
+        - ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0a', '0b', '0c', '0d', '0e', '0f']
+        2. output of the second sequence from [101 to 197]
+        - ['a0','a1','a2','a3','a4','a5','a6','a7','a8','a9','aa','ab','ac','ad','ae','af']
+        ```
         """
         while self.__start < numb:
-            if self.__start < 101:  # 0 to 100 sequence 0 to 9 of [a to f]
-                if self.__n > 9 and self.__n <= 15:
-                    self.__result = (
-                        str(self.__num[self.__index_num])
-                        + self.__char[self.__index_char]
-                    )
-                    self.__start -= 1
-                    self.__index_char += 1
-                if self.__n == 17:
-                    self.__n = 1
-                    self.__index_num += 1
-                    self.__index_char = 0
-                if self.__index_num > 9:
-                    self.__index_num = 0
-                if self.__n <= 9 or self.__n > 15:
-                    self.__result = str(self.__start)
-                if (
-                    self.__start == 99 and self.__n == 15
-                ):  # End first sequence and restart deta
-                    self.__index_char = 0
-                    self.__index_num = 0
-                    self.__n = 0
-                    self.__start += 1
-                self.__n += 1
-            else:  # 100 to 200 sequence a to f of [0 to 9]
-                if self.__n > 10 and self.__n < 17:
-                    self.__result = (
-                        self.__char[self.__index_char_static]
-                        + self.__char[self.__index_char]
-                    )
-                    self.__index_char += 1
-                if self.__n == 17:
-                    self.__n = 1
-                    self.__index_char = 0
-                    self.__index_num = 0
-                    self.__index_char_static += 1
-                if self.__n < 11:
-                    self.__result = self.__char[self.__index_char_static] + str(
-                        self.__num[self.__index_num]
-                    )
-                    self.__index_num += 1
-                self.__n += 1
+            if self.__start < 101:
+                # 0 to 100 sequence from [0 to 9] from [a to f] ex.: 0a,0b,0c,0d,0e,0f
+                self.__hexadecimal_0_to_100()
+            else:
+                # 100 to 256 sequence from [a to f] from [0 to 9] ex.: a0,a1,a2,a3,a4,05
+                self.__hexadecimal_100_to_256()
             self.__start += 1
             yield self.__result
 
+    def __hexadecimal_0_to_100(self):
+        if self.__n > 9 and self.__n <= 15:
+            self.__result = (
+                str(self.__num[self.__index_num])
+                + self.__char[self.__index_char["dynamic"]]
+            )
+            self.__start -= 1
+            self.__index_char["dynamic"] += 1
+        if self.__n == 17:
+            self.__n = 1
+            self.__index_num += 1
+            self.__index_char["dynamic"] = 0
+        if self.__index_num > 9:
+            self.__index_num = 0
+        if self.__n <= 9 or self.__n > 15:
+            self.__result = str(self.__start)
+        if (
+            self.__start == 99 and self.__n == 15
+        ):  # the first sequence ends and the data restarts
+            self.__index_char["dynamic"] = 0
+            self.__index_num = 0
+            self.__n = 0
+            self.__start += 1
+        self.__n += 1
 
+    def __hexadecimal_100_to_256(self):
+        if self.__n > 10 and self.__n < 17:
+            self.__result = (
+                self.__char[self.__index_char["static"]]
+                + self.__char[self.__index_char["dynamic"]]
+            )
+            self.__index_char["dynamic"] += 1
+        if self.__n == 17:
+            self.__n = 1
+            self.__index_char["dynamic"] = 0
+            self.__index_num = 0
+            self.__index_char["static"] += 1
+        if self.__n < 11:
+            self.__result = self.__char[self.__index_char["static"]] + str(
+                self.__num[self.__index_num]
+            )
+            self.__index_num += 1
+        self.__n += 1
+
+
+@dataclasses.dataclass
 class Bin:
+    """Binary from 00000000 to 11111111"""
+
     def __init__(self):
         self.__start = 0
-        (
-            self.__a,
-            self.__b,
-            self.__c,
-            self.__d,
-            self.__e,
-            self.__f,
-            self.__g,
-            self.__h,
-        ) = (0, 0, 0, 0, 0, 0, 0, 0)
-        self.n0, self.n1, self.n2, self.n3, self.n4, self.n5, self.n6, self.n7 = (
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-        )
+        self.__bit = {"a": 0, "b": 0, "c": 0, "d": 0, "e": 0, "f": 0, "g": 0, "h": 0}
+        self.__num = {
+            "n0": 0,
+            "n1": 0,
+            "n2": 0,
+            "n3": 0,
+            "n4": 0,
+            "n5": 0,
+            "n6": 0,
+            "n7": 0,
+        }
 
     def code(self, numb):
-        """Code bin"""
+        """
+        @NOTE: This method was divided into 7 submitted to treat each binary number.\n
+        `numb`: number of times that will be repeated.\n
+        `self.__start`:  it is the loop accountant.\n
+        `self.__bit{}`: represents each binary number that goes from `0 to 1`.\n
+        `self.__num{}`: is the control variable of each binary number.\n
+        `result`: returns the result of each `8bits` binary number.\n
+        """
         while self.__start < numb:
-            if self.n0 < 1:  # H
-                self.__h = 0
-                self.n0 += 1
-            else:
-                self.__h = 1
-                self.n0 = 0
-
-            if self.n1 < 2:  # G
-                self.__g = 0
-            else:
-                self.__g = 1
-                if self.n1 == 3:
-                    self.n1 = self.n1 - 4
-
-            if self.n2 < 4:  # F
-                self.__f = 0
-            else:
-                self.__f = 1
-                if self.n2 == 7:
-                    self.n2 = self.n2 - 8
-
-            if self.n3 < 8:  # E
-                self.__e = 0
-            else:
-                self.__e = 1
-                if self.n3 == 15:
-                    self.n3 = self.n3 - 16
-
-            if self.n4 < 16:  # D
-                self.__d = 0
-            else:
-                self.__d = 1
-                if self.n4 == 31:
-                    self.n4 = self.n4 - 32
-
-            if self.n5 < 32:  # C
-                self.__c = 0
-            else:
-                self.__c = 1
-                if self.n5 == 63:
-                    self.n5 = self.n5 - 64
-
-            if self.n6 < 64:  # B
-                self.__b = 0
-            else:
-                self.__b = 1
-                if self.n6 == 127:
-                    self.n6 = self.n6 - 128
-
-            if self.n7 < 128:  # A
-                self.__a = 0
-            else:
-                self.__a = 1
-                if self.n7 == 255:
-                    self.n7 = self.n7 - 256
+            self.__binary_h()
+            self.__binary_g()
+            self.__binary_f()
+            self.__binary_e()
+            self.__binary_d()
+            self.__binary_c()
+            self.__binary_b()
+            self.__binary_a()
 
             result = (
-                str(self.__a)
-                + str(self.__b)
-                + str(self.__c)
-                + str(self.__d)
-                + str(self.__e)
-                + str(self.__f)
-                + str(self.__g)
-                + str(self.__h)
+                str(self.__bit["a"])
+                + str(self.__bit["b"])
+                + str(self.__bit["c"])
+                + str(self.__bit["d"])
+                + str(self.__bit["e"])
+                + str(self.__bit["f"])
+                + str(self.__bit["g"])
+                + str(self.__bit["h"])
             )
-            self.n1 += 1
-            self.n2 += 1
-            self.n3 += 1
-            self.n4 += 1
-            self.n5 += 1
-            self.n6 += 1
-            self.n7 += 1
+            self.__num["n1"] += 1
+            self.__num["n2"] += 1
+            self.__num["n3"] += 1
+            self.__num["n4"] += 1
+            self.__num["n5"] += 1
+            self.__num["n6"] += 1
+            self.__num["n7"] += 1
             self.__start += 1
             yield result
+
+    def __binary_h(self):
+        if self.__num["n0"] < 1:  # H
+            self.__bit["h"] = 0
+            self.__num["n0"] += 1
+        else:
+            self.__bit["h"] = 1
+            self.__num["n0"] = 0
+
+    def __binary_g(self):
+        if self.__num["n1"] < 2:  # G
+            self.__bit["g"] = 0
+        else:
+            self.__bit["g"] = 1
+            if self.__num["n1"] == 3:
+                self.__num["n1"] = self.__num["n1"] - 4
+
+    def __binary_f(self):
+        if self.__num["n2"] < 4:  # F
+            self.__bit["f"] = 0
+        else:
+            self.__bit["f"] = 1
+            if self.__num["n2"] == 7:
+                self.__num["n2"] = self.__num["n2"] - 8
+
+    def __binary_e(self):
+        if self.__num["n3"] < 8:  # E
+            self.__bit["e"] = 0
+        else:
+            self.__bit["e"] = 1
+            if self.__num["n3"] == 15:
+                self.__num["n3"] = self.__num["n3"] - 16
+
+    def __binary_d(self):
+        if self.__num["n4"] < 16:  # D
+            self.__bit["d"] = 0
+        else:
+            self.__bit["d"] = 1
+            if self.__num["n4"] == 31:
+                self.__num["n4"] = self.__num["n4"] - 32
+
+    def __binary_c(self):
+        if self.__num["n5"] < 32:  # C
+            self.__bit["c"] = 0
+        else:
+            self.__bit["c"] = 1
+            if self.__num["n5"] == 63:
+                self.__num["n5"] = self.__num["n5"] - 64
+
+    def __binary_b(self):
+        if self.__num["n6"] < 64:  # B
+            self.__bit["b"] = 0
+        else:
+            self.__bit["b"] = 1
+            if self.__num["n6"] == 127:
+                self.__num["n6"] = self.__num["n6"] - 128
+
+    def __binary_a(self):
+        if self.__num["n7"] < 128:  # A
+            self.__bit["a"] = 0
+        else:
+            self.__bit["a"] = 1
+            if self.__num["n7"] == 255:
+                self.__num["n7"] = self.__num["n7"] - 256
 
 
 @dataclasses.dataclass
 class Symbol:
-    """ "TODO"""
+    """Symbol from 32 to 127"""
 
     def __init__(self):
         self.__start = 0
@@ -320,7 +367,12 @@ class Symbol:
         ]
 
     def code(self, numb):
-        """Code Symbol"""
+        """
+        `numb`: number of times that will be repeated.\n
+        `self.__start`: it is the loop accountant.\n
+        `self.__symbol[]: it's a list of symbols.\n
+        `self.__result`: returns the result of each `8bits` binary number.\n
+        """
         while self.__start < numb:
             result = self.__symbol[self.__start]
             self.__start += 1
