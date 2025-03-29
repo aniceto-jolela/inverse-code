@@ -1,5 +1,5 @@
 import unittest
-from .test_dec_0_255 import TestDec0255
+from .test_ascii.test_dec_0_255 import TestDec0255
 
 
 def suite():

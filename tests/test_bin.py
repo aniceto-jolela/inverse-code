@@ -1,5 +1,5 @@
 import unittest
-from .test_bin_0_1 import TestBin01
+from .test_ascii.test_bin_0_1 import TestBin01
 
 
 def suite():

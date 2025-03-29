@@ -1,5 +1,5 @@
 import unittest
-from .test_sybol_32_127 import TestSymbol
+from .test_ascii.test_sybol_32_127 import TestSymbol
 
 
 def suite():

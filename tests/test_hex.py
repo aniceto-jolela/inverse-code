@@ -1,5 +1,5 @@
 import unittest
-from .test_hex_00_ff import TestHex00ff
+from .test_ascii.test_hex_00_ff import TestHex00ff
 
 
 def suite():

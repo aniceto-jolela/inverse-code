@@ -1,5 +1,5 @@
 import unittest
-from .test_oct_000_037 import TestOct0377
+from .test_ascii.test_oct_000_037 import TestOct0377
 
 
 def suite():
