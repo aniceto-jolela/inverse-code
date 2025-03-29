@@ -407,10 +407,14 @@ class Symbol:
         `self.__symbol[]: it's a list of symbols.\n
         `self.__result`: returns the result of each `8bits` binary number.\n
         """
-        while self.__start < numb:
-            result = self.__symbol[self.__start]
-            self.__start += 1
-            yield result
+        try:
+            validate(numb, 95)
+            while self.__start < numb:
+                result = self.__symbol[self.__start]
+                self.__start += 1
+                yield result
+        except TypeError as e:
+            raise NonNumber from e
 
 
 def validate(numb, max_number, start=0):
