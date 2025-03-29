@@ -13,3 +13,10 @@ class NonNegativeNumber(ValueError):
 
     def __init__(self):
         super().__init__("Permitted values are higher than 0.")
+
+
+class ExceededIndexNumber(IndexError):
+    """NOTE: List index out of range"""
+
+    def __init__(self):
+        super().__init__("The index number has to be the same as the list [x]==[y].")

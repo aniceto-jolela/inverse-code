@@ -8,7 +8,7 @@ It seems a normal function, except that contains
 """
 
 import dataclasses
-from inverse_code.error import NonNumber, NonNegativeNumber
+from inverse_code.error import NonNumber, NonNegativeNumber, ExceededIndexNumber
 
 
 @dataclasses.dataclass
@@ -96,15 +96,20 @@ class Hex:
         - ['a0','a1','a2','a3','a4','a5','a6','a7','a8','a9','aa','ab','ac','ad','ae','af']
         ```
         """
-        while self.__start < numb:
-            if self.__start < 101:
-                # 0 to 100 sequence from [0 to 9] from [a to f] ex.: 0a,0b,0c,0d,0e,0f
-                self.__hexadecimal_0_to_100()
-            else:
-                # 100 to 256 sequence from [a to f] from [0 to 9] ex.: a0,a1,a2,a3,a4,05
-                self.__hexadecimal_100_to_256()
-            self.__start += 1
-            yield self.__result
+        try:
+            while self.__start < numb:
+                if self.__start < 101:
+                    # 0 to 100 sequence from [0 to 9] from [a to f] ex.: 0a,0b,0c,0d,0e,0f
+                    self.__hexadecimal_0_to_100()
+                else:
+                    # 100 to 256 sequence from [a to f] from [0 to 9] ex.: a0,a1,a2,a3,a4,05
+                    self.__hexadecimal_100_to_256()
+                self.__start += 1
+                yield self.__result
+        except IndexError as index:
+            raise ExceededIndexNumber from index
+        except TypeError as e:
+            raise NonNumber from e
 
     def __hexadecimal_0_to_100(self):
         if self.__n > 9 and self.__n <= 15:
