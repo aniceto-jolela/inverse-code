@@ -12,6 +12,7 @@ def suite():
             TestHex00ff("test_greater"),
             TestHex00ff("test_float"),
             TestHex00ff("test_non_number"),
+            TestHex00ff("test_maximum_number"),
         ]
     )
     return suite_

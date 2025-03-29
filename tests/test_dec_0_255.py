@@ -10,8 +10,9 @@ class TestDec0255(unittest.TestCase):
         self.assertEqual(Win1252.dec_0_255(self), list(Dec().code(256)))
 
     def test_negative_number(self):
-        """return []"""
-        self.assertIsNotNone(Win1252.dec_0_255(self), list(Dec().code(-256)))
+        """@NOTE: Permitted values are higher than 0."""
+        with self.assertRaises(ValueError):
+            self.assertIsNotNone(Win1252.dec_0_255(self), list(Dec().code(-256)))
 
     def test_greater(self):
         """return 255 > 200"""
@@ -25,6 +26,11 @@ class TestDec0255(unittest.TestCase):
         """@NOTE: Expect a TypeError for non-numeric inputs"""
         with self.assertRaises(TypeError):
             list(Dec().code("255"))
+
+    def test_maximum_number(self):
+        """@NOTE: The maximum number of this list is 256"""
+        with self.assertRaises(ValueError):
+            self.assertEqual(Win1252.dec_0_255(self), list(Dec().code(257)))
 
 
 if __name__ == "__main__":

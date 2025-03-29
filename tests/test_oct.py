@@ -12,6 +12,7 @@ def suite():
             TestOct0377("test_greater"),
             TestOct0377("test_float"),
             TestOct0377("test_non_number"),
+            TestOct0377("test_maximum_number"),
         ]
     )
     return suite_

@@ -8,7 +8,11 @@ It seems a normal function, except that contains
 """
 
 import dataclasses
-from inverse_code.error import NonNumber, NonNegativeNumber, ExceededIndexNumber
+from inverse_code.error import (
+    NonNumber,
+    NonNegativeNumber,
+    MaximumNumber,
+)
 
 
 @dataclasses.dataclass
@@ -20,6 +24,8 @@ class Dec:
         `numb`: is the amounts of times that the loop will be repeated.\n
         `start`: is the initial loop variable.\n"""
         try:
+            validate(numb, 256, start)
+
             while start < numb:
                 yield start
                 start += 1
@@ -41,8 +47,7 @@ class Oct:
         `self.__reset`: It is the `octal` control variable that goes from `0 to 7`."""
 
         try:
-            if numb < 1:
-                raise NonNegativeNumber
+            validate(numb, 378, start)
 
             while start < numb:
                 yield start
@@ -97,6 +102,11 @@ class Hex:
         ```
         """
         try:
+            if numb > 197:
+                raise MaximumNumber(max_number=197)
+
+            validate(numb, 197)
+
             while self.__start < numb:
                 if self.__start < 101:
                     # 0 to 100 sequence from [0 to 9] from [a to f] ex.: 0a,0b,0c,0d,0e,0f
@@ -106,8 +116,6 @@ class Hex:
                     self.__hexadecimal_100_to_256()
                 self.__start += 1
                 yield self.__result
-        except IndexError as index:
-            raise ExceededIndexNumber from index
         except TypeError as e:
             raise NonNumber from e
 
@@ -188,35 +196,40 @@ class Bin:
         `self.__num{}`: is the control variable of each binary number.\n
         `result`: returns the result of each `8bits` binary number.\n
         """
-        while self.__start < numb:
-            self.__binary_h()
-            self.__binary_g()
-            self.__binary_f()
-            self.__binary_e()
-            self.__binary_d()
-            self.__binary_c()
-            self.__binary_b()
-            self.__binary_a()
+        try:
+            validate(numb, 256)
 
-            result = (
-                str(self.__bit["a"])
-                + str(self.__bit["b"])
-                + str(self.__bit["c"])
-                + str(self.__bit["d"])
-                + str(self.__bit["e"])
-                + str(self.__bit["f"])
-                + str(self.__bit["g"])
-                + str(self.__bit["h"])
-            )
-            self.__num["n1"] += 1
-            self.__num["n2"] += 1
-            self.__num["n3"] += 1
-            self.__num["n4"] += 1
-            self.__num["n5"] += 1
-            self.__num["n6"] += 1
-            self.__num["n7"] += 1
-            self.__start += 1
-            yield result
+            while self.__start < numb:
+                self.__binary_h()
+                self.__binary_g()
+                self.__binary_f()
+                self.__binary_e()
+                self.__binary_d()
+                self.__binary_c()
+                self.__binary_b()
+                self.__binary_a()
+
+                result = (
+                    str(self.__bit["a"])
+                    + str(self.__bit["b"])
+                    + str(self.__bit["c"])
+                    + str(self.__bit["d"])
+                    + str(self.__bit["e"])
+                    + str(self.__bit["f"])
+                    + str(self.__bit["g"])
+                    + str(self.__bit["h"])
+                )
+                self.__num["n1"] += 1
+                self.__num["n2"] += 1
+                self.__num["n3"] += 1
+                self.__num["n4"] += 1
+                self.__num["n5"] += 1
+                self.__num["n6"] += 1
+                self.__num["n7"] += 1
+                self.__start += 1
+                yield result
+        except TypeError as e:
+            raise NonNumber from e
 
     def __binary_h(self):
         if self.__num["n0"] < 1:  # H
@@ -398,3 +411,15 @@ class Symbol:
             result = self.__symbol[self.__start]
             self.__start += 1
             yield result
+
+
+def validate(numb, max_number, start=0):
+    """validation of [`numb, max number` and `start`]"""
+    if numb < 1:
+        raise NonNegativeNumber
+
+    if numb > max_number:
+        raise MaximumNumber(max_number)
+
+    if start < 0:
+        raise NonNegativeNumber

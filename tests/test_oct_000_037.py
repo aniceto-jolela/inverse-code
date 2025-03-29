@@ -19,13 +19,19 @@ class TestOct0377(unittest.TestCase):
         self.assertGreater(Win1252.oct_000_377(self), list(Oct().code(200)))
 
     def test_float(self):
-        """[0 to 378] equal [378.97]"""
-        self.assertEqual(Win1252.oct_000_377(self), list(Oct().code(378.97)))
+        """[0 to 378] diff [378.97]"""
+        with self.assertRaises(ValueError):
+            self.assertEqual(Win1252.oct_000_377(self), list(Oct().code(378.97)))
 
     def test_non_number(self):
         """@NOTE: Expect a TypeError for non-numeric inputs"""
         with self.assertRaises(TypeError):
             list(Oct().code("378"))
+
+    def test_maximum_number(self):
+        """@NOTE: The maximum number of this list is 378"""
+        with self.assertRaises(ValueError):
+            self.assertEqual(Win1252.oct_000_377(self), list(Oct().code(379)))
 
 
 if __name__ == "__main__":
