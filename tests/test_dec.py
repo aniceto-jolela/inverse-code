@@ -3,6 +3,7 @@ from .test_dec_0_255 import TestDec0255
 
 
 def suite():
+    """Test list."""
     suite_ = unittest.TestSuite()
     suite_.addTests(
         [

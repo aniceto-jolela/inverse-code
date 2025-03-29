@@ -8,7 +8,7 @@ It seems a normal function, except that contains
 """
 
 import dataclasses
-from inverse_code.error import NonNumber
+from inverse_code.error import NonNumber, NonNegativeNumber
 
 
 @dataclasses.dataclass
@@ -39,13 +39,20 @@ class Oct:
         `numb`: is the amounts of times that the loop will be repeated.\n
         `start`: is the initial loop variable.\n
         `self.__reset`: It is the `octal` control variable that goes from `0 to 7`."""
-        while start < numb:
-            yield start
-            if self.__reset == 7:
-                self.__reset = self.__reset - 8
-                start += 2
-            self.__reset += 1
-            start += 1
+
+        try:
+            if numb < 1:
+                raise NonNegativeNumber
+
+            while start < numb:
+                yield start
+                if self.__reset == 7:
+                    self.__reset = self.__reset - 8
+                    start += 2
+                self.__reset += 1
+                start += 1
+        except TypeError as e:
+            raise NonNumber from e
 
 
 @dataclasses.dataclass

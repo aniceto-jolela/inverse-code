@@ -1,12 +1,17 @@
 import unittest
-from .test_oct_000_037 import TestDec0377
+from .test_oct_000_037 import TestOct0377
 
 
 def suite():
+    """Test list."""
     suite_ = unittest.TestSuite()
     suite_.addTests(
         [
-            TestDec0377("test_success"),
+            TestOct0377("test_success"),
+            TestOct0377("test_negative_number"),
+            TestOct0377("test_greater"),
+            TestOct0377("test_float"),
+            TestOct0377("test_non_number"),
         ]
     )
     return suite_
