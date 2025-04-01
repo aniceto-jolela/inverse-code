@@ -102,8 +102,6 @@ class Hex:
         ```
         """
         try:
-            if numb > 197:
-                raise MaximumNumber(max_number=197)
 
             validate(numb, 197)
 
@@ -115,7 +113,7 @@ class Hex:
                     # 100 to 256 sequence from [a to f] from [0 to 9] ex.: a0,a1,a2,a3,a4,05
                     self.__hexadecimal_100_to_256()
                 self.__start += 1
-                yield self.__result
+                yield {"int": self.__start, "hex": self.__result}
         except TypeError as e:
             raise NonNumber from e
 
