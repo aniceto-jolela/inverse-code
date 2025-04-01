@@ -39,12 +39,15 @@ class Oct:
 
     def __init__(self):
         self.__reset = 0
+        self.__resetjump = 0
 
     def code(self, numb, start=0):
         """
         `numb`: is the amounts of times that the loop will be repeated.\n
         `start`: is the initial loop variable.\n
-        `self.__reset`: It is the `octal` control variable that goes from `0 to 7`."""
+        `self.__reset`: it is the `octal` control variable that goes from `0 to 7`.\n
+        `self.__resetjump`: it is the `octal` control variable that goes from `77 + 23`.
+        """
 
         try:
             validate(numb, 378, start)
@@ -55,7 +58,13 @@ class Oct:
                     self.__reset = self.__reset - 8
                     start += 2
                 self.__reset += 1
+                self.__resetjump += 1
+
+                if self.__resetjump == 64:
+                    start += 20
+                    self.__resetjump = 0
                 start += 1
+
         except TypeError as e:
             raise NonNumber from e
 

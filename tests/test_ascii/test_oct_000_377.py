@@ -7,7 +7,7 @@ class TestOct0377(unittest.TestCase):
 
     def test_success(self):
         """return success"""
-        self.assertEqual(Win1252.oct_000_377(self), list(Oct().code(378)))
+        self.assertDictEqual(Win1252.oct_000_377(self), list(Oct().code(377)))
 
     def test_negative_number(self):
         """return permitted values are higher than 0."""
