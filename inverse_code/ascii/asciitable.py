@@ -89,6 +89,7 @@ class Hex:
         `self.__index_num`: is the `index` that controls the `self.__num`'s list
             that goes from [0 to 9].\n
         `self.__result`: returns the result of each `character in string`.\n
+        `yield`: returns 1 dictionary of 2 values {int, str}
 
         ### demonstration
 
@@ -193,6 +194,7 @@ class Bin:
         `self.__bit{}`: represents each binary number that goes from `0 to 1`.\n
         `self.__num{}`: is the control variable of each binary number.\n
         `result`: returns the result of each `8bits` binary number.\n
+        `yield`: returns 1 dictionary of 2 values {int, str}
         """
         try:
             validate(numb, 256)
@@ -225,7 +227,7 @@ class Bin:
                 self.__num["n6"] += 1
                 self.__num["n7"] += 1
                 self.__start += 1
-                yield result
+                yield {"int": self.__start, "bin": result}
         except TypeError as e:
             raise NonNumber from e
 

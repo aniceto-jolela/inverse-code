@@ -33,7 +33,9 @@ class TestHelpersHex(unittest.TestCase):
 
     def test_all(self):
         """lists all hexadecimal numbers."""
-        self.assertEqual(hexshow.all_hexadecimal(), list(hexshow.Hex().code(197)))
+        self.assertEqual(
+            hexshow.all_hexadecimal(), [x["hex"] for x in hexshow.Hex().code(197)]
+        )
 
 
 if __name__ == "__main__":

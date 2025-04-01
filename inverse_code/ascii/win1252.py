@@ -27,12 +27,12 @@ class Win1252:
 
     def hex_00_ff(self):
         """return a list of 0 to ff hexadecimal"""
-        result = list(Hex().code(197))
+        result = [x["hex"] for x in Hex().code(197)]
         return result
 
     def bin_01(self):
         """return a list of 00000000 to 11111111 binary numbers"""
-        result = list(Bin().code(256))
+        result = [x["bin"] for x in Bin().code(256)]
         return result
 
     def symbol_32_127(self):
