@@ -6,7 +6,11 @@ def suite():
     """@NOTE: return all tests"""
     suite_ = unittest.TestSuite()
     suite_.addTests(
-        [TestConvertDecimal("cdec_octal"), TestConvertDecimal("cdec_hexadeciaml")]
+        [
+            TestConvertDecimal("cdec_octal"),
+            TestConvertDecimal("cdec_hexadeciaml"),
+            TestConvertDecimal("cdec_binary"),
+        ]
     )
     return suite_
 
