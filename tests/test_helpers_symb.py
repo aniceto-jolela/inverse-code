@@ -1,5 +1,5 @@
 import unittest
-from .test_helpers_symb_32_127 import TestHelpersSymb
+from .test_helpers.test_helpers_symb_32_127 import TestHelpersSymb
 
 
 def suite():

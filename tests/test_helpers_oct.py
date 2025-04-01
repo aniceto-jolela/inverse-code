@@ -1,5 +1,5 @@
 import unittest
-from .test_helpers_oct_0_377 import TestHelpersOct
+from .test_helpers.test_helpers_oct_0_377 import TestHelpersOct
 
 
 def suite():

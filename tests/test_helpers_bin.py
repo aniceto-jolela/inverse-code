@@ -1,5 +1,5 @@
 import unittest
-from .test_helpers_bin_0_1 import TestHelpersBin
+from .test_helpers.test_helpers_bin_0_1 import TestHelpersBin
 
 
 def suite():

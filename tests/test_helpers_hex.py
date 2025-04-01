@@ -1,5 +1,5 @@
 import unittest
-from .test_helpers_hex_0_ff import TestHelpersHex
+from .test_helpers.test_helpers_hex_0_ff import TestHelpersHex
 
 
 def suite():
