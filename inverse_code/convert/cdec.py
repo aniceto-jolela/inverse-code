@@ -1,12 +1,28 @@
-from inverse_code.error import MaximumNumber
-from inverse_code.helpers import octshow
+from inverse_code.error import MaximumNumber, NonNumber
+from inverse_code.helpers import octshow, hexshow
 
 
 def cdec_octal(char):
     """convert decimal to octal"""
 
-    if char > 255:
-        raise MaximumNumber(255)
+    try:
+        if char > 255:
+            raise MaximumNumber(255)
 
-    result = octshow.all_octal()
-    return result[char]
+        result = octshow.all_octal()
+        return result[char]
+    except TypeError as e:
+        raise NonNumber from e
+
+
+def cdec_hexadecimal(char):
+    """convert decimal to hexadecimal"""
+
+    try:
+        if char > 255:
+            raise MaximumNumber(255)
+
+        result = hexshow.all_hexadecimal()
+        return result[char]
+    except TypeError as e:
+        raise NonNumber from e

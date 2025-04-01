@@ -12,6 +12,10 @@ class TestConvertDecimal(unittest.TestCase):
             377,
         )
 
+    def cdec_hexadeciaml(self):
+        """[0 to ff]"""
+        self.assertEqual(cdec.cdec_hexadecimal(255), "ff")
+
 
 if __name__ == "__main__":
     unittest.main()
