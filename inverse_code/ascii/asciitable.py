@@ -412,7 +412,7 @@ class Symbol:
             while self.__start < numb:
                 result = self.__symbol[self.__start]
                 self.__start += 1
-                yield result
+                yield {"int": self.__start, "symb": result}
         except TypeError as e:
             raise NonNumber from e
 
