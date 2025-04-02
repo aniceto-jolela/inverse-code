@@ -3,7 +3,12 @@ from inverse_code.helpers import octshow, decshow, hexshow, binshow, symbshow
 
 
 def coct_decimal(char):
-    """convert octal to decimal"""
+    """
+    convert octal to decimal.\n
+    @NOTE: `index_oct`: octal control Index.\n
+    `result`: Records the decimal list and returns the corresponding index of the octal.\n
+    returns a decimal number based on the octal index.
+    """
     index_oct = 0
 
     try:
@@ -19,32 +24,59 @@ def coct_decimal(char):
 
     except TypeError as e:
         raise NonNumber from e
+    except IndexError as ex:
+        raise IndexError(
+            f"""This ({char}) character does not correspond to the octal base.
+            Please come in with a valid character."""
+        ) from ex
 
 
 def coct_hexadecimal(char):
-    """convert decimal to hexadecimal"""
+    """
+    convert decimal to hexadecimal.\n
+    """
+    index_oct = 0
 
     try:
-        if char > 375:
-            raise MaximumNumber(375)
+        if char > 377:
+            raise MaximumNumber(377)
 
         result = hexshow.all_hexadecimal()
-        return result[char]
+        for x in octshow.all_octal():
+            if char == x:
+                break
+            index_oct += 1
+        return result[index_oct]
     except TypeError as e:
         raise NonNumber from e
+    except IndexError as ex:
+        raise IndexError(
+            f"""This ({char}) character does not correspond to the hexadecimal base.
+            Please come in with a valid character."""
+        ) from ex
 
 
 def coct_binary(char):
     """convert decimal to binary"""
+    index_oct = 0
 
     try:
         if char > 377:
             raise MaximumNumber(377)
 
         result = binshow.all_binary()
-        return result[char]
+        for x in octshow.all_octal():
+            if char == x:
+                break
+            index_oct += 1
+        return result[index_oct]
     except TypeError as e:
         raise NonNumber from e
+    except IndexError as ex:
+        raise IndexError(
+            f"""This ({char}) character does not correspond to the binary base.
+            Please come in with a valid character."""
+        ) from ex
 
 
 def coct_symbol(char):
@@ -52,15 +84,25 @@ def coct_symbol(char):
     convert decimal to symbol.\n
     @NOTE: Only values is allowed from `32` to `126`.
     """
+    index_oct = 0
 
     try:
-        if char > 126:
-            raise MaximumNumber(126)
+        if char < 40:
+            raise ValueError("Only values is allowed from 40 to 176.")
 
-        if char < 32:
-            raise ValueError("Only values is allowed from 32 to 126.")
+        if char > 176:
+            raise MaximumNumber(176)
 
         result = symbshow.all_symbol()
-        return result[char]
+        for x in octshow.all_octal():
+            if char == x:
+                break
+            index_oct += 1
+        return result[index_oct]
     except TypeError as e:
         raise NonNumber from e
+    except IndexError as ex:
+        raise IndexError(
+            f"""This ({char}) character does not correspond to the symbol base.
+            Please come in with a valid character."""
+        ) from ex

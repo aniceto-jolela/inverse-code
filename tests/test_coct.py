@@ -8,9 +8,9 @@ def suite():
     suite_.addTests(
         [
             TestConvertOctal("coct_decimal"),
-            # TestConvertOctal("coct_hexadeciaml"),
-            # TestConvertOctal("coct_binary"),
-            # TestConvertOctal("coct_symbol"),
+            TestConvertOctal("coct_hexadeciaml"),
+            TestConvertOctal("coct_binary"),
+            TestConvertOctal("coct_symbol"),
         ]
     )
     return suite_

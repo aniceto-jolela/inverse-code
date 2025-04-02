@@ -14,15 +14,15 @@ class TestConvertOctal(unittest.TestCase):
 
     def coct_hexadeciaml(self):
         """[0 to ff]"""
-        self.assertEqual(coct.coct_hexadecimal(336), "fff")
+        self.assertEqual(coct.coct_hexadecimal(214), "8c")
 
     def coct_binary(self):
         """[0 to 1111]"""
-        self.assertEqual(coct.coct_binary(255), "11111111")
+        self.assertEqual(coct.coct_binary(377), "11111111")
 
     def coct_symbol(self):
         """[sp to del]"""
-        self.assertEqual(coct.coct_symbol(32), " ")
+        self.assertEqual(coct.coct_symbol(175), "~")
 
 
 if __name__ == "__main__":
