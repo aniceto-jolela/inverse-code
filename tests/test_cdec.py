@@ -1,5 +1,5 @@
 import unittest
-from .test_convert_dec import TestConvertDecimal
+from .convert.test_convert_dec import TestConvertDecimal
 
 
 def suite():

@@ -1,5 +1,5 @@
 import unittest
-from .convert.test_convert_bin import TestConvertBinary
+from .convert.test_convert_symb import TestConvertSymbol
 
 
 def suite():
@@ -7,10 +7,10 @@ def suite():
     suite_ = unittest.TestSuite()
     suite_.addTests(
         [
-            TestConvertBinary("cbin_decimal"),
-            TestConvertBinary("cbin_octal"),
-            TestConvertBinary("cbin_hexadecimal"),
-            TestConvertBinary("cbin_symbol"),
+            TestConvertSymbol("csymb_decimal"),
+            TestConvertSymbol("csymb_octal"),
+            TestConvertSymbol("csymb_hexadecimal"),
+            TestConvertSymbol("csymb_binary"),
         ]
     )
     return suite_
