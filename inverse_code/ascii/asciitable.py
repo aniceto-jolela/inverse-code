@@ -312,6 +312,38 @@ class Symbol:
     def __init__(self):
         self.__start = 0
         self.__symbol = [
+            "nul",
+            "soh",
+            "stx",
+            "etx",
+            "eot",
+            "enq",
+            "ack",
+            "bel",
+            "bs",
+            "ht",
+            "lf",
+            "vf",
+            "ff",
+            "cr",
+            "so",
+            "si",
+            "dle",
+            "dc1",
+            "dc2",
+            "dc3",
+            "dc4",
+            "nak",
+            "syn",
+            "etb",
+            "can",
+            "em",
+            "sub",
+            "esc",
+            "fs",
+            "gs",
+            "rs",
+            "us",
             " ",
             "!",
             '"',
@@ -417,7 +449,7 @@ class Symbol:
         `self.__result`: returns the result of each `8bits` binary number.\n
         """
         try:
-            validate(numb, 95)
+            validate(numb, 127)
             while self.__start < numb:
                 result = self.__symbol[self.__start]
                 self.__start += 1

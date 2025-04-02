@@ -1,5 +1,5 @@
 from inverse_code.error import MaximumNumber, NonNumber
-from inverse_code.helpers import octshow, hexshow, binshow
+from inverse_code.helpers import octshow, hexshow, binshow, symbshow
 
 
 def cdec_octal(char):
@@ -36,6 +36,22 @@ def cdec_binary(char):
             raise MaximumNumber(255)
 
         result = binshow.all_binary()
+        return result[char]
+    except TypeError as e:
+        raise NonNumber from e
+
+
+def cdec_symbol(char):
+    """convert decimal to symbol"""
+
+    try:
+        if char > 126:
+            raise MaximumNumber(126)
+
+        if char < 32:
+            raise ValueError("Only values is allowed from 32 to 126.")
+
+        result = symbshow.all_symbol()
         return result[char]
     except TypeError as e:
         raise NonNumber from e

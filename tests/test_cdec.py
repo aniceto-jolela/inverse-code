@@ -10,6 +10,7 @@ def suite():
             TestConvertDecimal("cdec_octal"),
             TestConvertDecimal("cdec_hexadeciaml"),
             TestConvertDecimal("cdec_binary"),
+            TestConvertDecimal("cdec_symbol"),
         ]
     )
     return suite_
