@@ -26,14 +26,14 @@ def coct_decimal(char):
         raise NonNumber from e
     except IndexError as ex:
         raise IndexError(
-            f"""This ({char}) character does not correspond to the octal base.
+            f"""This ({char}) character does not correspond to the octal list.
             Please come in with a valid character."""
         ) from ex
 
 
 def coct_hexadecimal(char):
     """
-    convert decimal to hexadecimal.\n
+    convert octal to hexadecimal.\n
     """
     index_oct = 0
 
@@ -51,13 +51,13 @@ def coct_hexadecimal(char):
         raise NonNumber from e
     except IndexError as ex:
         raise IndexError(
-            f"""This ({char}) character does not correspond to the hexadecimal base.
+            f"""This ({char}) character does not correspond to the hexadecimal list.
             Please come in with a valid character."""
         ) from ex
 
 
 def coct_binary(char):
-    """convert decimal to binary"""
+    """convert octal to binary"""
     index_oct = 0
 
     try:
@@ -74,14 +74,14 @@ def coct_binary(char):
         raise NonNumber from e
     except IndexError as ex:
         raise IndexError(
-            f"""This ({char}) character does not correspond to the binary base.
+            f"""This ({char}) character does not correspond to the binary list.
             Please come in with a valid character."""
         ) from ex
 
 
 def coct_symbol(char):
     """
-    convert decimal to symbol.\n
+    convert octal to symbol.\n
     @NOTE: Only values is allowed from `32` to `126`.
     """
     index_oct = 0
@@ -103,6 +103,6 @@ def coct_symbol(char):
         raise NonNumber from e
     except IndexError as ex:
         raise IndexError(
-            f"""This ({char}) character does not correspond to the symbol base.
+            f"""This ({char}) character does not correspond to the symbol list.
             Please come in with a valid character."""
         ) from ex

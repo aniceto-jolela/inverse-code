@@ -407,6 +407,7 @@ class Symbol:
             "\\",
             "]",
             "^",
+            "_",
             "`",
             "a",
             "b",
@@ -449,7 +450,7 @@ class Symbol:
         `self.__result`: returns the result of each `8bits` binary number.\n
         """
         try:
-            validate(numb, 127)
+            validate(numb, 128)
             while self.__start < numb:
                 result = self.__symbol[self.__start]
                 self.__start += 1

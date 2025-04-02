@@ -12,7 +12,7 @@ class TestConvertDecimal(unittest.TestCase):
             377,
         )
 
-    def cdec_hexadeciaml(self):
+    def cdec_hexadecimal(self):
         """[0 to ff]"""
         self.assertEqual(cdec.cdec_hexadecimal(255), "ff")
 

@@ -37,5 +37,5 @@ class Win1252:
 
     def symbol_32_127(self):
         """return a list of 32 to 127 symbol"""
-        result = [x["symb"] for x in Symbol().code(127)]
+        result = [x["symb"] for x in Symbol().code(128)]
         return result
