@@ -46,14 +46,20 @@ class Oct:
         `numb`: is the amounts of times that the loop will be repeated.\n
         `start`: is the initial loop variable.\n
         `self.__reset`: it is the `octal` control variable that goes from `0 to 7`.\n
-        `self.__resetjump`: it is the `octal` control variable that goes from `77 + 23`.
+        `self.__resetjump`: it is the `octal` control variable that goes from `77 + 23`.\n
+        @TODO: `new_start`: return string.\n
         """
 
         try:
             validate(numb, 378, start)
+            new_start = ""
 
             while start < numb:
-                yield start
+                new_start = start
+                if start < 8:
+                    new_start = "0" + str(start)
+
+                yield {"int": start, "oct": new_start}
                 if self.__reset == 7:
                     self.__reset = self.__reset - 8
                     start += 2
@@ -98,7 +104,8 @@ class Hex:
         `self.__index_num`: is the `index` that controls the `self.__num`'s list
             that goes from [0 to 9].\n
         `self.__result`: returns the result of each `character in string`.\n
-        `yield`: returns 1 dictionary of 2 values {int, str}
+        `yield`: returns 1 dictionary of 2 values {int, str}.\n
+        @TODO: `new_result`: increases zeros up to 9 the numbers of less than 10.\n
 
         ### demonstration
 
@@ -114,6 +121,7 @@ class Hex:
         try:
 
             validate(numb, 197)
+            new_result = ""
 
             while self.__start < numb:
                 if self.__start < 101:
@@ -123,7 +131,11 @@ class Hex:
                     # 100 to 256 sequence from [a to f] from [0 to 9] ex.: a0,a1,a2,a3,a4,05
                     self.__hexadecimal_100_to_256()
                 self.__start += 1
-                yield {"int": self.__start, "hex": self.__result}
+
+                new_result = self.__result
+                if self.__start < 10:
+                    new_result = "0" + self.__result
+                yield {"int": self.__start, "hex": new_result}
         except TypeError as e:
             raise NonNumber from e
 

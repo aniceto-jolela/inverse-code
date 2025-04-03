@@ -22,7 +22,7 @@ class TestConvertOctal(unittest.TestCase):
 
     def coct_symbol(self):
         """[sp to del]"""
-        self.assertEqual(coct.coct_symbol(175), "~")
+        self.assertEqual(coct.coct_symbol(176), "~")
 
 
 if __name__ == "__main__":

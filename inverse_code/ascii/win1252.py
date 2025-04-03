@@ -22,7 +22,7 @@ class Win1252:
 
     def oct_000_377(self):
         """return a list of 0 to 377 octal"""
-        result = list(Oct().code(378))
+        result = [x["oct"] for x in Oct().code(378)]
         return result
 
     def hex_00_ff(self):
