@@ -6,6 +6,7 @@ converts symbol to binary\n
 - increases from 4 bits up to 32 bits.\n
 - It encodes 32 bits bit to bit and returns a 4-bit binary list.\n
 - the output has to be like `Reed-Solomon's error correction codes`.
+converts binary to hexadecimal.\n
 
 """
 
@@ -25,14 +26,16 @@ def encode(characters):
     decode_raw = []
     end_of_coding = []
     chexadecimal = []
+    cdecimal = []
 
     characters = single_character(characters)
     cbinary = converts_symbol_to_binary(characters, cbinary)
     decode_raw = increases_4_bits_up_to_32_bits(decode_raw, cbinary)
     end_of_coding = encodes_bit_a_bit(end_of_coding, decode_raw)
     chexadecimal = converts_binary_to_hexadecimal(chexadecimal, end_of_coding)
+    cdecimal = converts_hexadecimal_to_decimal(chexadecimal)
 
-    return chexadecimal
+    return cdecimal
 
 
 def single_character(characters: str):
@@ -144,3 +147,42 @@ def converts_binary_to_hexadecimal(chexadecimal, end_of_coding):
     for h in end_of_coding:
         chexadecimal.append(cbin.cbin_hexadecimal(h))
     return chexadecimal
+
+
+def converts_hexadecimal_to_decimal(chexadecimal: list):
+    """
+    @NOTE: Converts hexadecimal to decimal.\n
+    Formula:\n
+    (hex)16=(x)10
+    """
+
+    base = 0
+    b = []
+    add_8bit = []
+
+    for d in chexadecimal:
+        count = 0
+        while count < 2:
+            if count == 0:
+                add_8bit.append(d[:1])  # add only the first digito
+            else:
+                add_8bit.append(d[1:])  # add only the last digito
+            count += 1
+
+    for c in add_8bit:
+        b.append(
+            chex.chex_decimal("0" + c)
+        )  # converts the 8bit from hexadecimal to decimal
+
+    base = (
+        (b[0] * 16**7)
+        + (b[1] * 16**6)
+        + (b[2] * 16**5)
+        + (b[3] * 16**4)
+        + (b[4] * 16**3)
+        + (b[5] * 16**2)
+        + (b[6] * 16**1)
+        + (b[7] * 16**0)
+    )  # formula to calculate the hexadecimal
+
+    return base
