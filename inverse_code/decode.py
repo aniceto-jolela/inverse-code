@@ -33,7 +33,7 @@ def decode(decimal_number):
     decode_raw = increases_4_bits_up_to_32_bits(decode_raw, cbinary)
     end_of_coding = codes_bit_a_bit(end_of_coding, decode_raw)
 
-    return decode_raw
+    return end_of_coding
 
 
 def converts_decimal_hexadecimal(decimal_number: int):
@@ -129,18 +129,28 @@ def codes_bit_a_bit(end_of_coding: list, decode_raw: list):
 
     start = 0
     start_4_bit = 0
-    index_x = 0
+    bit_least_significant = 0
+    bit_most_significant = 4
     encode_bit = ""
+    start_2_bit = True
 
     while start < 32:
         if start_4_bit == 4:
             start_4_bit = 0
-            index_x += 1
 
-        encode_bit += decode_raw[start_4_bit][index_x]
+        if start_2_bit:  #
+            start_2_bit = False
+            encode_bit += decode_raw[start_4_bit][bit_least_significant]
+        else:
+            start_2_bit = True
+            encode_bit += decode_raw[start_4_bit][bit_most_significant]
+            start_4_bit += 1
+
         if len(encode_bit) == 8:
             end_of_coding.append(encode_bit)
             encode_bit = ""
-        start_4_bit += 1
+            bit_least_significant += 1
+            bit_most_significant += 1
+
         start += 1
     return end_of_coding
