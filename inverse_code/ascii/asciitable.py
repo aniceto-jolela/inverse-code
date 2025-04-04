@@ -105,7 +105,6 @@ class Hex:
             that goes from [0 to 9].\n
         `self.__result`: returns the result of each `character in string`.\n
         `yield`: returns 1 dictionary of 2 values {int, str}.\n
-        @TODO: `new_result`: increases zeros up to 9 the numbers of less than 10.\n
 
         ### demonstration
 
@@ -121,7 +120,6 @@ class Hex:
         try:
 
             validate(numb, 197)
-            new_result = ""
 
             while self.__start < numb:
                 if self.__start < 101:
@@ -132,10 +130,7 @@ class Hex:
                     self.__hexadecimal_100_to_256()
                 self.__start += 1
 
-                new_result = self.__result
-                if self.__start < 10:
-                    new_result = "0" + self.__result
-                yield {"int": self.__start, "hex": new_result}
+                yield {"int": self.__start, "hex": self.__result}
         except TypeError as e:
             raise NonNumber from e
 
@@ -154,7 +149,12 @@ class Hex:
         if self.__index_num > 9:
             self.__index_num = 0
         if self.__n <= 9 or self.__n > 15:
-            self.__result = str(self.__start)
+            if self.__start <= 9:
+                self.__result = "0" + str(
+                    self.__start
+                )  # increases zeros up to 9 the numbers of less than 10.
+            else:
+                self.__result = str(self.__start)
         if (
             self.__start == 99 and self.__n == 15
         ):  # the first sequence ends and the data restarts

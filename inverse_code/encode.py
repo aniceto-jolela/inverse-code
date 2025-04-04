@@ -7,7 +7,7 @@ converts symbol to binary\n
 - It encodes 32 bits bit to bit and returns a 4-bit binary list.\n
 - the output has to be like `Reed-Solomon's error correction codes`.
 converts binary to hexadecimal.\n
-
+converts hexadecimal to decimal.\n
 """
 
 from .convert import csymb, chex, cbin, cdec
@@ -171,7 +171,7 @@ def converts_hexadecimal_to_decimal(chexadecimal: list):
 
     for c in add_8bit:
         b.append(
-            chex.chex_decimal("0" + c)
+            chex.chex_decimal("0" + c)  # "0": is to complement hexadecimal bit
         )  # converts the 8bit from hexadecimal to decimal
 
     base = (
