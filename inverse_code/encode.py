@@ -141,7 +141,7 @@ def encodes_bit_a_bit(end_of_coding: list, decode_raw: list):
     return end_of_coding
 
 
-def converts_binary_to_hexadecimal(chexadecimal, end_of_coding):
+def converts_binary_to_hexadecimal(chexadecimal: list, end_of_coding: list):
     """converts binary to hexadecimal"""
 
     for h in end_of_coding:

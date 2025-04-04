@@ -22,7 +22,6 @@ def chex_octal(char):
 def chex_decimal(char: str):
     """convert hexadecimal to decimal"""
     index_hex = 0
-    g = 0
 
     try:
         result = decshow.all_decimal()
