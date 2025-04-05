@@ -1,5 +1,5 @@
 import unittest
-from .convert.test_convert_symb import TestConvertSymbol
+from .test_convert.test_convert_symb import TestConvertSymbol
 
 
 def suite():

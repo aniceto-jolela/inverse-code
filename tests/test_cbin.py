@@ -1,5 +1,5 @@
 import unittest
-from .convert.test_convert_bin import TestConvertBinary
+from .test_convert.test_convert_bin import TestConvertBinary
 
 
 def suite():

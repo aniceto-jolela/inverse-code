@@ -1,5 +1,5 @@
 import unittest
-from .convert.test_convert_oct import TestConvertOctal
+from .test_convert.test_convert_oct import TestConvertOctal
 
 
 def suite():

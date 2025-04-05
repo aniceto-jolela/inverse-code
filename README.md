@@ -9,6 +9,37 @@
 
 Reverse Code is a library created for Python to help developers encrypt and retrieve their data in a simple and dynamic way.
 
+This cryptography is at least vaguely similar to real-world things, such as `Reed-Solomon error correction` codes or some interspersed data formats that can be transmitted by `IoT` edge devices.
+
+### Data processing provided in unusual formats or owners
+For the success of this library was divided into some sub library:
+- [ascii](inverse_code/ascii/ASCII.md)
+- [convert](inverse_code/convert/CONVERT.md)
+- [helpers](inverse_code/INVERSE_CODE.md)
+
+### Project structure
+inverse_code <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +---[inverse_code](inverse_code/INVERSE_CODE.md) <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---ascii <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---ASCII.md <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--- ... <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---convert <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---CONVERT.md <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--- ... <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---helpers <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---HELPERS.md <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--- ... <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +---tests <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---test_convert <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---test_ascii <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---test_helpers <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---test_encode.py <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---test_decode.py <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+--- ... <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +---.pylintrc <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +---README.md <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +---setup.py <br/>
+
 ## Configuration
 
 ### Environment

@@ -1,5 +1,5 @@
 import unittest
-from .convert.test_convert_hex import TestConvertHexadecimal
+from .test_convert.test_convert_hex import TestConvertHexadecimal
 
 
 def suite():
