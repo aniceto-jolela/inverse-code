@@ -144,7 +144,7 @@ def codes_bit_a_bit(end_of_coding: list, decode_raw: list):
             start_4_bit = 0
 
         if start_2_bit:
-            # permite adicionar 2 bit em cada 8 bit. 8bit=[abcdefgh] 2bit=[ae]
+            # allows you to add 2 bit every 8 bit. 8bit = [abcdefgh] 2bit = [ae]
             start_2_bit = False
             decode_8bit += decode_raw[start_4_bit][bit_least_significant]
         else:
