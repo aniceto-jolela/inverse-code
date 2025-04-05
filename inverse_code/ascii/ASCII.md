@@ -27,7 +27,7 @@ Here is all the control functions inherited from the asciitable method.
 4. def bin_01(self): return a list of 00000000 to 11111111 binary numbers
 5. def symbol_32_127(self): return a list of 32 to 127 symbol
 
-### snippet code
+### code snippets
 
 ```python
 from .asciitable import Dec, Oct
