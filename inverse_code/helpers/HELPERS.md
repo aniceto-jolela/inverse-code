@@ -1,4 +1,4 @@
-# Helpers
+# Helper
 
 This library is responsible for listing the entire ASCII table according to your data limit. It depends on the Win1252 module of the ASCII Library.
 
