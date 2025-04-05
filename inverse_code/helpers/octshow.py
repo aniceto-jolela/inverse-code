@@ -3,7 +3,6 @@ from inverse_code.ascii.win1252 import Win1252, Oct
 
 def control_characters_0_37():
     """0 to 37"""
-    # list(Oct().code(38))
     result = [x["oct"] for x in Oct().code(38)]
     return result
 
