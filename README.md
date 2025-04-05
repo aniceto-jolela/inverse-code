@@ -6,6 +6,8 @@
 [![python: version](https://img.shields.io/badge/python-3.13.2-blue)](https://docs.python.org/)
 [![unittest](https://img.shields.io/badge/doctest-unittest-red)](https://docs.python.org/3/library/unittest.html)
 [![ascii](https://img.shields.io/badge/ascii-windows1252-purple)](https://www.ascii-code.com/)
+[![setup: tools](https://img.shields.io/badge/setup-tools-orange)](https://setuptools.pypa.io/en/latest/userguide/declarative_config.html)
+[![pyproject: toml](https://img.shields.io/badge/pyproject-toml-white)](https://packaging.python.org/en/latest/guides/writing-pyproject/)
 
 
 Reverse Code is a library created for Python to help developers encrypt and retrieve their data in a simple and dynamic way.

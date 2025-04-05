@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "inverse_code"
+version = "2025.0.3"
+requires-python = ">=3.10"
+author = [{name="Aniceto Jolela", email="otecina500@gmail.com"}]
+maintainers = [{name="Aniceto Jolela", email="otecina500@gmail.com"}]
+description = "Reverse Code is a library created for Python to help developers encrypt and retrieve their data in a simple way."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICEN[CS]E.*"]
+keywords = ["inverse-code", "inverse_code", "code", "ascii", "convert","helpers","decode","encode","win1252","asciitable","binary","bin","dec","hex","oct","unittest","test","pylintrc","yield","readme","library"]
+classifiers = [
+# How mature is this project? Common values are
+#   3 - Alpha
+#   4 - Beta
+#   5 - Production/Stable
+"Development Status :: 5 - Production/Stable",
+
+# Indicate who your project is intended for
+"Intended Audience :: Developers",
+"Topic :: Software Development :: Build Tools",
+
+# Specify the Python versions you support here.
+"Programming Language :: Python :: 3",
+"Programming Language :: Python :: 3.10",
+"Programming Language :: Python :: 3.11",
+"Programming Language :: Python :: 3.12",
+"Programming Language :: Python :: 3.13.2",
+]
+
+[project.urls]
+Repository = "https://github.com/aniceto-jolela/inverse-code"
+Documentation = "https://github.com/aniceto-jolela/inverse-code/blob/main/README.md"
+Tests = "https://github.com/aniceto-jolela/inverse-code/tree/main/tests"
+ASCII = "https://www.ascii-code.com/"
+
+[project.scripts]
+spam-cli = "spam:main_cli"
+
+[project.gui-scripts]
+spam-gui = "spam:main_gui"
+
+[project.entry-points."spam.magical"]
+tomatoes = "spam:main_tomatoes"
+
+
