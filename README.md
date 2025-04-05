@@ -5,17 +5,22 @@
 [![pypi: version](https://img.shields.io/badge/pypi-25.0.1-blue)](https://pypi.org/project/pip/)
 [![python: version](https://img.shields.io/badge/python-3.13.2-blue)](https://docs.python.org/)
 [![unittest](https://img.shields.io/badge/doctest-unittest-red)](https://docs.python.org/3/library/unittest.html)
+[![ascii](https://img.shields.io/badge/ascii-windows1252-red)](https://www.ascii-code.com/)
 
 
 Reverse Code is a library created for Python to help developers encrypt and retrieve their data in a simple and dynamic way.
 
 This cryptography is at least vaguely similar to real-world things, such as `Reed-Solomon error correction` codes or some interspersed data formats that can be transmitted by `IoT` edge devices.
 
+`ASCII`, means American standard code for information exchange. It is a 7 -bit character code where each individual bit represents a unique character.
+
+I used the 8-bit ASCII table with 256 characters and symbols, which is based on the Windows-1252 characters set.
+
 ### Data processing provided in unusual formats or owners
 For the success of this library was divided into some sub library:
 - [ascii](inverse_code/ascii/ASCII.md)
 - [convert](inverse_code/convert/CONVERT.md)
-- [helpers](inverse_code/INVERSE_CODE.md)
+- [helpers](inverse_code/helpers/HELPERS.md)
 
 ### Project structure
 inverse_code <br/>
@@ -39,6 +44,9 @@ inverse_code <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +---.pylintrc <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +---README.md <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +---setup.py <br/>
+
+> [!IMPORTANT] 
+> I avoided 98.7% the use of libraries or third party structures, because one of the goals is to help and see how my code can be amazing when I am working on a problem where none of these libraries still exist.
 
 ## Configuration
 
