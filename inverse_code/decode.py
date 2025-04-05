@@ -10,7 +10,8 @@ converts binary to hexadecimal.\n
 converts hexadecimal to decimal.\n
 """
 
-from .convert import csymb, chex, cbin, cdec
+from .convert import chex, cbin, cdec
+from .error import NonNumber
 
 
 def decode(decimal_number):
@@ -22,18 +23,22 @@ def decode(decimal_number):
     if len(str(decimal_number)) > 9:
         raise ValueError("Can only be in maximum 9 characters.")
 
-    cbinary = []
-    decode_raw = []
-    end_of_coding = []
-    chexadecimal = []
-    cbinary = []
+    try:
+        cbinary = []
+        decode_raw = []
+        end_of_coding = []
+        chexadecimal = []
+        csymbol = []
 
-    chexadecimal = converts_decimal_hexadecimal(decimal_number)
-    cbinary = converts_hexadecimal_binary(chexadecimal)
-    decode_raw = increases_4_bits_up_to_32_bits(decode_raw, cbinary)
-    end_of_coding = codes_bit_a_bit(end_of_coding, decode_raw)
+        chexadecimal = converts_decimal_hexadecimal(decimal_number)
+        cbinary = converts_hexadecimal_binary(chexadecimal)
+        decode_raw = increases_4_bits_up_to_32_bits(decode_raw, cbinary)
+        end_of_coding = codes_bit_a_bit(end_of_coding, decode_raw)
+        csymbol = converts_binary_symbol(csymbol, end_of_coding)
+    except TypeError as e:
+        raise NonNumber from e
 
-    return end_of_coding
+    return csymbol
 
 
 def converts_decimal_hexadecimal(decimal_number: int):
@@ -114,7 +119,7 @@ def codes_bit_a_bit(end_of_coding: list, decode_raw: list):
     @NOTE: It encodes 32 bits bit to bit and returns a 4-bit binary list.\n
     `decode_raw`: list of 32 bit separated by 4 bits.\n
     `start_4_bit`: 4 bit control variable [0 to 3].\n
-    `index`: makes the passing of bit from [0 to 7].\n
+    `bit_least_significant` and `bit_most_significant`: makes the passing of bit from [0 to 7].\n
     `encode_bit`: stores every 8 bit in the 32 bits list.\n
     `end_of_coding`: stores each 8 bit and returns a separate 4 bit list.\n
 
@@ -131,26 +136,43 @@ def codes_bit_a_bit(end_of_coding: list, decode_raw: list):
     start_4_bit = 0
     bit_least_significant = 0
     bit_most_significant = 4
-    encode_bit = ""
+    decode_8bit = ""
     start_2_bit = True
 
     while start < 32:
         if start_4_bit == 4:
             start_4_bit = 0
 
-        if start_2_bit:  #
+        if start_2_bit:
+            # permite adicionar 2 bit em cada 8 bit. 8bit=[abcdefgh] 2bit=[ae]
             start_2_bit = False
-            encode_bit += decode_raw[start_4_bit][bit_least_significant]
+            decode_8bit += decode_raw[start_4_bit][bit_least_significant]
         else:
             start_2_bit = True
-            encode_bit += decode_raw[start_4_bit][bit_most_significant]
+            decode_8bit += decode_raw[start_4_bit][bit_most_significant]
             start_4_bit += 1
 
-        if len(encode_bit) == 8:
-            end_of_coding.append(encode_bit)
-            encode_bit = ""
+        if len(decode_8bit) == 8:
+            end_of_coding.append(decode_8bit)
+            decode_8bit = ""
             bit_least_significant += 1
             bit_most_significant += 1
-
         start += 1
     return end_of_coding
+
+
+def converts_binary_symbol(csymbol, end_of_coding: list):
+    """
+    @NOTE: Converts symbol to binary.\n
+    `binary[::-1]`: reversing the binary.\n
+    `csymbol`: converts binary to symbol.\n
+
+    `out of the code`: FRED\n
+    """
+
+    character = ""
+    for b in end_of_coding[::-1]:
+        if b != "00000000":
+            character += cbin.cbin_symbol(b)  # converts binary to symbol
+    csymbol = character
+    return csymbol
