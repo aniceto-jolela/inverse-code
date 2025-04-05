@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling >= 1.26"]
 build-backend = "hatchling.build"
 
 [project]
@@ -9,9 +9,8 @@ requires-python = ">=3.10"
 author = [{name="Aniceto Jolela", email="otecina500@gmail.com"}]
 maintainers = [{name="Aniceto Jolela", email="otecina500@gmail.com"}]
 description = "Reverse Code is a library created for Python to help developers encrypt and retrieve their data in a simple way."
-readme = "README.md"
-license = "MIT"
-license-files = ["LICEN[CS]E.*"]
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {text = "MIT"}
 keywords = ["inverse-code", "inverse_code", "code", "ascii", "convert","helpers","decode","encode","win1252","asciitable","binary","bin","dec","hex","oct","unittest","test","pylintrc","yield","readme","library"]
 classifiers = [
 # How mature is this project? Common values are
@@ -22,29 +21,60 @@ classifiers = [
 
 # Indicate who your project is intended for
 "Intended Audience :: Developers",
-"Topic :: Software Development :: Build Tools",
+"License :: OSI Approved :: MIT License",
 
 # Specify the Python versions you support here.
 "Programming Language :: Python :: 3",
 "Programming Language :: Python :: 3.10",
 "Programming Language :: Python :: 3.11",
 "Programming Language :: Python :: 3.12",
-"Programming Language :: Python :: 3.13.2",
+"Programming Language :: Python :: 3.13",
+"Topic :: Software Development :: Libraries :: Python Modules",
+"Topic :: Security :: Cryptography",
+"Operating System :: OS Independent",
+]
+
+dependencies = [
+    "requests",
+]
+
+[project.optional-dependencies]
+pdf = ["ReportLab>=1.2", "RXP"]
+rest = ["docutils>=0.3", "pack==1.1,==1.3"]
+dev = [
+    "pytest>=7.4.0",
+    "black>=23.7.0",
+    "isort>=5.12.0",
 ]
 
 [project.urls]
-Repository = "https://github.com/aniceto-jolela/inverse-code"
-Documentation = "https://github.com/aniceto-jolela/inverse-code/blob/main/README.md"
-Tests = "https://github.com/aniceto-jolela/inverse-code/tree/main/tests"
-ASCII = "https://www.ascii-code.com/"
+"Homepage" = "https://github.com/aniceto-jolela/inverse-code"
+"Documentation" = "https://github.com/aniceto-jolela/inverse-code/blob/main/README.md"
+"Repository" = "https://github.com/aniceto-jolela/inverse-code"
+"Tests" = "https://github.com/aniceto-jolela/inverse-code/tree/main/tests"
+"ASCII Reference" = "https://www.ascii-code.com/"
 
 [project.scripts]
-spam-cli = "spam:main_cli"
+inverse-code-cli = "inverse_code.cli:main"
 
-[project.gui-scripts]
-spam-gui = "spam:main_gui"
+[tool.hatch.build.targets.wheel]
+packages = ["src/inverse_code"]
 
-[project.entry-points."spam.magical"]
-tomatoes = "spam:main_tomatoes"
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/inverse_code",
+    "README.md",
+    "INVERSE_CODE.md",
+    "HELPERS.md",
+    "ASCII.md",
+    "CONVERT.md",
+    "LICENSE",
+]
 
+[tool.hatch.build]
+include = [
+    "src/inverse_code/**/*.py",
+    "src/inverse_code/**/*.txt",
+    "src/inverse_code/**/*.md",
+]
 
