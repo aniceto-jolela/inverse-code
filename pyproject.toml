@@ -4,10 +4,10 @@ build-backend = "hatchling.build"
 
 [project]
 name = "inverse_code"
-version = "1.3"
+version = "0.4"
 requires-python = ">=3.10"
-author = [{name="Aniceto Jolela", email="otecina500@gmail.com"}]
-maintainers = [{name="Aniceto Jolela", email="otecina500@gmail.com"}]
+author = {name="Aniceto Jolela", email="otecina500@gmail.com"}
+maintainers = {name="Aniceto Jolela", email="otecina500@gmail.com"}
 description = "Reverse Code is a library created for Python to help developers encrypt and retrieve their data in a simple way."
 readme = {file = "README.md", content-type = "text/markdown"}
 license = {text = "MIT"}
@@ -48,21 +48,21 @@ dev = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/aniceto-jolela/inverse-code"
-"Documentation" = "https://github.com/aniceto-jolela/inverse-code/blob/main/README.md"
-"Repository" = "https://github.com/aniceto-jolela/inverse-code"
-"Tests" = "https://github.com/aniceto-jolela/inverse-code/tree/main/tests"
+"Homepage" = "https://github.com/aniceto-jolela/inverse_code"
+"Documentation" = "https://github.com/aniceto-jolela/inverse_code/blob/main/README.md"
+"Repository" = "https://github.com/aniceto-jolela/inverse_code"
+"Tests" = "https://github.com/aniceto-jolela/inverse_code/tree/main/tests"
 "ASCII Reference" = "https://www.ascii-code.com/"
 
 [project.scripts]
-inverse_code-cli = "inverse_code.cli:main"
+inverse-code-cli = "inverse_code.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/inverse_code"]
+packages = ["inverse_code"]
 
 [tool.hatch.build.targets.sdist]
 include = [
-    "src/inverse_code",
+    "inverse_code",
     "README.md",
     "INVERSE_CODE.md",
     "HELPERS.md",
@@ -72,9 +72,10 @@ include = [
 ]
 
 [tool.hatch.build]
+packages = ["inverse_code"]
 include = [
-    "src/inverse_code/**/*.py",
-    "src/inverse_code/**/*.txt",
-    "src/inverse_code/**/*.md",
+    "inverse_code/inverse_code/**/*.py",
+    "inverse_code/inverse_code/**/*.txt",
+    "inverse_code/inverse_code/**/*.md",
 ]
 
