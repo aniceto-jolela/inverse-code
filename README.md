@@ -8,7 +8,7 @@
 [![ascii](https://img.shields.io/badge/ascii-windows1252-purple)](https://www.ascii-code.com/)
 [![pyproject: toml](https://img.shields.io/badge/pyproject-toml-white)](https://packaging.python.org/en/latest/guides/writing-pyproject/)
 [![twine](https://img.shields.io/badge/twine-utility-brown)](https://pypi.org/project/twine/)
-
+[![inverse-code](https://img.shields.io/badge/inverse_code-1.2-blue)](https://pypi.org/project/inverse-code/)
 
 Reverse Code is a library created for Python to help developers encrypt and retrieve their data in a simple and dynamic way.
 
